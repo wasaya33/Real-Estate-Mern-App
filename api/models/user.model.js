@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
 
     avatar:{
         type: String,
-        default: "https://play.google.com/store/apps/details?id=com.urappsltd.boysdp&hl=en_US"
+        default: "https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg"
       },
 
    
