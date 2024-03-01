@@ -7,7 +7,6 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { app } from '../firebase';
-// import { Download } from '@mui/icons-material';
 
 const Profile = () => {
   const fileRef = useRef(null)
