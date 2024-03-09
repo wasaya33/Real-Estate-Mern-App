@@ -20,6 +20,7 @@ import {
 } from '../../../api/redux/user/userSlice.js';
 
 import { useDispatch as UserDispatch } from 'react-redux';
+import {Link} from 'react-router-dom'
 
 
 const Profile = () => {
@@ -182,6 +183,9 @@ const Profile = () => {
         >
           {loading ? 'Loading...' : 'Update'}
         </button>
+        <Link className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95' to={"/create-listing"}>
+         Create Listing
+        </Link>
       </form>
       <div className='mt-5 justify-between flex'>
         <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Delete account</span>
