@@ -11,7 +11,7 @@ const listingSchema = new mongoose.Schema(
             type : String,
             required : true
         },
-        adress : {
+        address : {
             type : String,
             required : true
         },
@@ -23,11 +23,11 @@ const listingSchema = new mongoose.Schema(
             type : String,
             required : true
         },
-        bathRooms : {
+        bathrooms : {
             type : String,
             required : true
         },
-        bedRooms : {
+        bedrooms : {
             type : String,
             required : true
         },
