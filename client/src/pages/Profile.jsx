@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
 import { app } from '../firebase';
 import {
@@ -27,6 +27,10 @@ const Profile = () => {
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
+
+
+// Navigator 
+const navigate=useNavigate();
 
   useEffect(() => {
     if (file) {
@@ -78,11 +82,12 @@ const Profile = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log(data)
       if (!data.success) {
         dispatch(updateUserFailure(data.message));
         return;
       }
-      dispatch(updateUserSuccess(data));
+      dispatch(updateUserSuccess(data.rest));
       setUpdateSuccess(true);
     } catch (error) {
       dispatch(updateUserFailure(error.message));
@@ -96,11 +101,13 @@ const Profile = () => {
         method: 'DELETE',
       });
       const data = await res.json();
+      console.log(data)
       if (!data.success) {
         dispatch(deleteUserFailure(data.message));
         return;
       }
       dispatch(deleteUserSuccess(data));
+      navigate("/sign-up")
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
@@ -116,6 +123,7 @@ const Profile = () => {
         return;
       }
       dispatch(signOutUserSuccess(data));
+      navigate("sign-in")
     } catch (error) {
       dispatch(signOutUserFailure(error.message));
     }
@@ -151,6 +159,7 @@ const Profile = () => {
       setUserListings((prev) =>
         prev.filter((listing) => listing._id !== listingId)
       );
+      
     } catch (error) {
       console.log(error.message);
     }
